@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="de" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Schutz vor Suchmaschinen-Indexierung (Demo-Version) -->
+    <meta name="robots" content="noindex, nofollow">
+    <title>Design-Entwurf · Elektro W. Nengelken GmbH Köln-Mülheim</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+
+        .page-view {
+            animation: fadeIn 0.25s ease-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Dezentes Schaltplan-/Licht-Raster im Hero */
+        .hero-pattern {
+            background-image: radial-gradient(rgba(220, 38, 38, 0.16) 1px, transparent 1px);
+            background-size: 26px 26px;
+        }
+
+        /* Laufband für Leistungsschwerpunkte */
+        @keyframes marquee {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-50%); }
+        }
+        .animate-marquee {
+            display: flex;
+            width: max-content;
+            animation: marquee 28s linear infinite;
+        }
+        .animate-marquee:hover {
+            animation-play-state: paused;
+        }
+    </style>
+</head>
+<body class="bg-zinc-50 text-zinc-800 antialiased selection:bg-red-600 selection:text-white flex flex-col min-h-screen">
+
+    <!-- 1. Gut sichtbarer Demo-Hinweis-Balken ganz oben -->
+    <div class="bg-yellow-400 text-zinc-950 text-xs md:text-sm font-extrabold py-2.5 px-4 text-center border-b border-yellow-500 shadow-xs z-50">
+        🎨 UNVERBINDLICHER DESIGN-ENTWURF · Demoseite erstellt von Local Growth Media (Keine aktive Unternehmenswebsite)
+    </div>
+
+    <!-- 2. Top-Kontaktleiste (Direktwahl, E-Mail & Öffnungszeiten sofort sichtbar) -->
+    <div class="bg-zinc-950 text-zinc-200 text-xs font-medium py-2 px-4 border-b border-white/10">
+        <div class="max-w-6xl mx-auto flex flex-wrap items-center justify-between gap-2">
+            <span class="text-zinc-300">⚡ Elektroinstallation seit 1987 · Meisterbetrieb in Köln-Mülheim</span>
+            <div class="flex items-center gap-4">
+                <a href="tel:+49221614025" class="text-yellow-400 hover:text-yellow-300 font-bold flex items-center gap-1.5">
+                    <span>📞 0221 / 61 40 25</span>
+                </a>
+                <a href="mailto:elektro.nengelken@gmx.de" class="hidden sm:inline-flex text-zinc-300 hover:text-white font-medium items-center gap-1.5">
+                    <span>✉️ elektro.nengelken@gmx.de</span>
+                </a>
+                <span class="hidden md:inline text-zinc-400">🕒 Mo–Fr: 10:00–18:00 Uhr</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. Hauptnavigation (im markanten Signalrot der Bestandsseite) -->
+    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-zinc-200/90 shadow-2xs">
+        <div class="max-w-6xl mx-auto px-4 py-3.5 flex items-center justify-between gap-4">
+            <!-- W. Nengelken Marken-Logo (Anthrazit + Signalrot + Elektro-Gelb) -->
+            <button type="button" onclick="navigateTo('home')" class="flex items-center gap-3 text-left group cursor-pointer">
+                <div class="relative w-11 h-11 rounded-xl bg-zinc-900 border-2 border-red-600 text-white flex items-center justify-center font-extrabold text-base tracking-tight shadow-sm group-hover:scale-[1.02] transition shrink-0">
+                    <span>WN</span>
+                    <span class="absolute -top-1.5 -right-1.5 w-4 h-4 rounded-full bg-yellow-400 text-zinc-950 text-[10px] font-black flex items-center justify-center shadow-2xs">⚡</span>
+                </div>
+                <div>
+                    <span class="text-sm md:text-base font-extrabold text-zinc-900 block leading-tight tracking-tight">
+                        W. NENGELKEN <span class="text-red-600">Elektro GmbH</span>
+                    </span>
+                    <span class="text-[11px] font-semibold text-zinc-500 block">
+                        Elektroinstallation seit 1987 · Köln-Mülheim
+                    </span>
+                </div>
+            </button>
+
+            <!-- Desktop-Navigation -->
+            <nav class="hidden lg:flex items-center gap-1 bg-zinc-100 p-1 rounded-xl border border-zinc-200/80">
+                <button type="button" onclick="navigateTo('home')" data-nav="home" class="nav-btn px-4 py-2 rounded-lg text-sm font-bold transition bg-red-600 text-white shadow-2xs cursor-pointer">
+                    Startseite
+                </button>
+                <button type="button" onclick="navigateTo('leistungen')" data-nav="leistungen" class="nav-btn px-4 py-2 rounded-lg text-sm font-medium text-zinc-700 hover:text-zinc-950 transition cursor-pointer">
+                    Leistungen
+                </button>
+                <button type="button" onclick="navigateTo('ueber-uns')" data-nav="ueber-uns" class="nav-btn px-4 py-2 rounded-lg text-sm font-medium text-zinc-700 hover:text-zinc-950 transition cursor-pointer">
+                    Über uns &amp; Tradition
+                </button>
+                <button type="button" onclick="navigateTo('kontakt')" data-nav="kontakt" class="nav-btn px-4 py-2 rounded-lg text-sm font-medium text-zinc-700 hover:text-zinc-950 transition cursor-pointer">
+                    Kontakt
+                </button>
+            </nav>
+
+            <!-- Direkter Telefon-Button im Header -->
+            <a href="tel:+49221614025" class="bg-red-600 hover:bg-red-700 text-white font-bold text-xs md:text-sm px-4 py-2.5 rounded-xl transition shadow-xs flex items-center gap-1.5">
+                <span>📞</span>
+                <span>0221 / 61 40 25</span>
+            </a>
+        </div>
+
+        <!-- Mobile Unterseiten-Leiste -->
+        <div class="lg:hidden border-t border-zinc-200 bg-zinc-50 px-2 py-1.5 flex justify-around text-xs font-semibold overflow-x-auto">
+            <button type="button" onclick="navigateTo('home')" data-nav-mob="home" class="mob-nav-btn px-3 py-1.5 rounded-lg text-white bg-red-600 shadow-2xs">Start</button>
+            <button type="button" onclick="navigateTo('leistungen')" data-nav-mob="leistungen" class="mob-nav-btn px-3 py-1.5 rounded-lg text-zinc-600">Leistungen</button>
+            <button type="button" onclick="navigateTo('ueber-uns')" data-nav-mob="ueber-uns" class="mob-nav-btn px-3 py-1.5 rounded-lg text-zinc-600">Über uns</button>
+            <button type="button" onclick="navigateTo('kontakt')" data-nav-mob="kontakt" class="mob-nav-btn px-3 py-1.5 rounded-lg text-zinc-600">Kontakt</button>
+        </div>
+    </header>
+
+    <!-- HAUPTINHALT -->
+    <main class="flex-1">
+
+        <!-- ========================================================= -->
+        <!-- UNTERSEITE 1: STARTSEITE (MIT DIREKTER KONTAKT-BOX OBEN)  -->
+        <!-- ========================================================= -->
+        <div id="view-home" class="page-view">
+
+            <!-- HERO SECTION: Links Vertrauens-Pitch, Rechts SOFORT SICHTBARE Kontakt- & Projekt-Anfrage-Box -->
+            <section class="relative bg-gradient-to-br from-zinc-950 via-zinc-900 to-red-950 text-white pt-10 pb-14 md:pt-14 md:pb-16 px-4 overflow-hidden hero-pattern">
+                <!-- Dezente Kölner Skyline-Silhouette im Hintergrund -->
+                <svg class="absolute bottom-0 inset-x-0 w-full h-28 text-white/[0.03] pointer-events-none" viewBox="0 0 1200 120" preserveAspectRatio="none" fill="currentColor">
+                    <path d="M0,120 L0,95 L80,95 L80,70 L110,70 L110,95 L180,95 L180,55 L192,20 L204,55 L212,20 L224,55 L224,95 L320,95 Q420,45 520,95 L620,95 L620,65 L680,65 L680,95 L820,95 Q920,50 1020,95 L1200,95 L1200,120 Z"/>
+                </svg>
+
+                <div class="max-w-6xl mx-auto relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
+
+                    <!-- Linke Spalte: Positionierung & Vertrauenssignale -->
+                    <div class="lg:col-span-6 pt-2">
+                        <!-- Traditions- & Fachbetriebs-Badge -->
+                        <div class="inline-flex items-center gap-2.5 bg-white/10 backdrop-blur-xs border border-white/15 rounded-full px-4 py-1.5 text-xs font-semibold mb-5">
+                            <span class="text-yellow-400 text-sm">⚡</span>
+                            <span class="text-white font-bold">Seit 1987</span>
+                            <span class="text-zinc-300">Ihr Elektro-Fachbetrieb in Köln-Mülheim</span>
+                        </div>
+
+                        <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight leading-[1.12] mb-5">
+                            Moderne <span class="text-red-500">Elektrotechnik</span> &amp; <span class="text-yellow-400">Installation</span> für Haus &amp; Gewerbe.
+                        </h1>
+
+                        <p class="text-zinc-300 text-base md:text-lg leading-relaxed mb-7">
+                            Von Starkstrom, Zähleranlagen und Sicherungskästen bis hin zu Smart Home, Netzwerktechnik und Küchenplanung: Das familiäre Team von <strong>Elektro W. Nengelken GmbH</strong> berät Sie verständlich und direkt bei Ihnen vor Ort.
+                        </p>
+
+                        <!-- Direkte Vorteile als kompakte Checkliste -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-7 text-sm">
+                            <div class="flex items-center gap-2.5 bg-white/5 border border-white/10 rounded-xl px-3.5 py-2.5">
+                                <span class="text-yellow-400 font-bold">✓</span>
+                                <span class="text-zinc-200 font-medium">Starkstrom &amp; Zähleranlagen</span>
+                            </div>
+                            <div class="flex items-center gap-2.5 bg-white/5 border border-white/10 rounded-xl px-3.5 py-2.5">
+                                <span class="text-yellow-400 font-bold">✓</span>
+                                <span class="text-zinc-200 font-medium">Smart Home &amp; LAN-Netzwerke</span>
+                            </div>
+                            <div class="flex items-center gap-2.5 bg-white/5 border border-white/10 rounded-xl px-3.5 py-2.5">
+                                <span class="text-yellow-400 font-bold">✓</span>
+                                <span class="text-zinc-200 font-medium">Anlagen- &amp; Küchenplanung</span>
+                            </div>
+                            <div class="flex items-center gap-2.5 bg-white/5 border border-white/10 rounded-xl px-3.5 py-2.5">
+                                <span class="text-yellow-400 font-bold">✓</span>
+                                <span class="text-zinc-200 font-medium">Persönliche Vor-Ort-Beratung</span>
+                            </div>
+                        </div>
+
+                        <!-- Sofort-Anruf & E-Mail ohne Umwege -->
+                        <div class="flex flex-wrap items-center gap-3">
+                            <a href="tel:+49221614025" class="bg-yellow-400 text-zinc-950 hover:bg-yellow-300 font-extrabold px-5 py-3.5 rounded-xl text-sm transition shadow-md inline-flex items-center gap-2">
+                                <span>📞 Hotline: 0221 / 61 40 25</span>
+                            </a>
+                            <a href="mailto:elektro.nengelken@gmx.de" class="bg-white/10 hover:bg-white/15 border border-white/20 text-white font-semibold px-5 py-3.5 rounded-xl text-sm transition">
+                                ✉️ elektro.nengelken@gmx.de
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Rechte Spalte: DIREKT SICHTBARE KONTAKT- & SCHNELL-KALKULATOR-KARTE -->
+                    <div class="lg:col-span-6">
+                        <div class="bg-white text-zinc-900 rounded-3xl p-5 sm:p-7 shadow-2xl border border-zinc-200/80">
+                            <div class="flex items-center justify-between gap-2 pb-4 mb-4 border-b border-zinc-100">
+                                <div>
+                                    <span class="inline-flex items-center gap-1.5 text-[11px] font-extrabold uppercase tracking-wider text-red-600">
+                                        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                                        Direktkontakt &amp; Projekt-Anfrage
+                                    </span>
+                                    <h2 class="text-lg sm:text-xl font-extrabold text-zinc-900 mt-0.5">
+                                        Unverbindlich anfragen – Vor-Ort-Termin sichern
+                                    </h2>
+                                </div>
+                            </div>
+
+                            <!-- Direkt sichtbare Schnell-Auswahl + Live-Preisindikation -->
+                            <form id="heroDirectForm" class="space-y-4">
+                                <input type="hidden" name="access_key" value="DEIN_WEB3FORMS_KEY">
+                                <input type="hidden" name="subject" value="Neue Projekt-Anfrage - Elektro W. Nengelken GmbH">
+                                <input type="hidden" id="heroCalcSummary" name="kalkulation">
+
+                                <!-- 1. Leistungsbereich als direkte Schnellwahl-Buttons -->
+                                <div>
+                                    <label class="block text-xs font-bold text-zinc-700 mb-1.5">Welches Vorhaben planen Sie?</label>
+                                    <div class="grid grid-cols-3 gap-2">
+                                        <button type="button" onclick="setHeroService('Hauselektrik & Zähleranlage', 85, this)" class="hero-srv-btn border-2 border-red-600 bg-red-50 text-red-950 rounded-xl py-2 px-2 text-center transition cursor-pointer">
+                                            <span class="block text-xs font-extrabold">⚡ Hauselektrik</span>
+                                        </button>
+                                        <button type="button" onclick="setHeroService('Smart Home & LAN-Technik', 110, this)" class="hero-srv-btn border border-zinc-200 bg-zinc-50 text-zinc-700 hover:border-red-400 rounded-xl py-2 px-2 text-center transition cursor-pointer">
+                                            <span class="block text-xs font-extrabold">🏠 Smart Home</span>
+                                        </button>
+                                        <button type="button" onclick="setHeroService('Küchen- & Anlagenplanung', 95, this)" class="hero-srv-btn border border-zinc-200 bg-zinc-50 text-zinc-700 hover:border-red-400 rounded-xl py-2 px-2 text-center transition cursor-pointer">
+                                            <span class="block text-xs font-extrabold">🔌 Küchen / Planung</span>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- 2. Projektumfang-Slider mit Live-Richtwert -->
+                                <div class="bg-zinc-50 border border-zinc-200/90 rounded-2xl p-3.5">
+                                    <div class="flex items-center justify-between text-xs mb-1.5">
+                                        <span class="font-bold text-zinc-700">Umfang: <strong id="heroScopeVal" class="text-red-600">6 Anschlüsse / Punkte</strong></span>
+                                        <span class="font-extrabold text-zinc-900 bg-white border border-zinc-200 px-2.5 py-0.5 rounded-lg">
+                                            Richtwert: <span id="heroLivePrice" class="text-red-600">ca. 510 €</span>
+                                        </span>
+                                    </div>
+                                    <input type="range" id="heroScopeSlider" min="1" max="30" step="1" value="6" oninput="updateHeroEstimate()" class="w-full accent-red-600 cursor-pointer">
+                                    <div class="flex justify-between text-[10px] text-zinc-400 mt-0.5">
+                                        <span>1 Punkt (Kleinauftrag)</span>
+                                        <span>15 Punkte (Wohnung)</span>
+                                        <span>30+ (Komplettsanierung)</span>
+                                    </div>
+                                </div>
+
+                                <!-- 3. Direkt sichtbare Kontaktfelder (ohne Extra-Klick) -->
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                    <div>
+                                        <label class="block text-xs font-bold text-zinc-700 mb-1">Ihr Name / Firma *</label>
+                                        <input type="text" name="name" required placeholder="Max Mustermann" class="w-full bg-zinc-50 border border-zinc-300 rounded-xl px-3.5 py-2.5 text-sm text-zinc-900 focus:outline-none focus:border-red-600 focus:bg-white">
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs font-bold text-zinc-700 mb-1">Telefon oder E-Mail *</label>
+                                        <input type="text" name="contact" required placeholder="0221... oder E-Mail" class="w-full bg-zinc-50 border border-zinc-300 rounded-xl px-3.5 py-2.5 text-sm text-zinc-900 focus:outline-none focus:border-red-600 focus:bg-white">
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label class="block text-xs font-bold text-zinc-700 mb-1">Stadtteil / Kurze Beschreibung (optional)</label>
+                                    <input type="text" name="details" placeholder="z.B. Köln-Mülheim, Sicherungskasten erneuern / Wallbox" class="w-full bg-zinc-50 border border-zinc-300 rounded-xl px-3.5 py-2.5 text-sm text-zinc-900 focus:outline-none focus:border-red-600 focus:bg-white">
+                                </div>
+
+                                <button type="submit" id="heroSubmitBtn" class="w-full bg-red-600 hover:bg-red-700 text-white font-extrabold py-3.5 rounded-xl text-sm transition shadow-md cursor-pointer">
+                                    Kostenlose Vor-Ort-Beratung anfragen →
+                                </button>
+
+                                <p class="text-[11px] text-zinc-400 text-center">
+                                    Familiäres Meisterteam · Regentenstr. 5A, 51063 Köln-Mülheim
+                                </p>
+                            </form>
+
+                            <div id="heroSuccessBox" class="hidden bg-emerald-50 border border-emerald-300 text-emerald-900 p-4 rounded-2xl text-sm text-center space-y-2">
+                                <div class="font-extrabold">✅ Anfrage erfolgreich übermittelt!</div>
+                                <p class="text-xs">Vielen Dank! Das Team von Elektro W. Nengelken meldet sich kurzfristig telefonisch oder per E-Mail bei Ihnen.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- Laufendes Keyword-Band in Signalrot -->
+            <div class="bg-red-600 text-white py-3 overflow-hidden border-y border-red-700">
+                <div class="animate-marquee text-xs font-extrabold uppercase tracking-widest flex items-center gap-8">
+                    <span>ELEKTROINSTALLATION SEIT 1987</span><span>⚡</span>
+                    <span>STARKSTROM &amp; ZÄHLERANLAGEN</span><span>⚡</span>
+                    <span>HAUSELEKTRIK &amp; LICHTTECHNIK</span><span>⚡</span>
+                    <span>SMARTHOME-TECHNIK</span><span>⚡</span>
+                    <span>LAN &amp; NETZWERKTECHNIK</span><span>⚡</span>
+                    <span>KÜCHEN- &amp; ANLAGENPLANUNG</span><span>⚡</span>
+                    <span>KÖLN-MÜLHEIM &amp; UMGEBUNG</span><span>⚡</span>
+                    <!-- Duplikat für nahtlosen Loop -->
+                    <span>ELEKTROINSTALLATION SEIT 1987</span><span>⚡</span>
+                    <span>STARKSTROM &amp; ZÄHLERANLAGEN</span><span>⚡</span>
+                    <span>HAUSELEKTRIK &amp; LICHTTECHNIK</span><span>⚡</span>
+                    <span>SMARTHOME-TECHNIK</span><span>⚡</span>
+                    <span>LAN &amp; NETZWERKTECHNIK</span><span>⚡</span>
+                    <span>KÜCHEN- &amp; ANLAGENPLANUNG</span><span>⚡</span>
+                    <span>KÖLN-MÜLHEIM &amp; UMGEBUNG</span><span>⚡</span>
+                </div>
+            </div>
+
+            <!-- Qualifikations- & Service-Leiste -->
+            <section class="py-8 px-4 bg-white border-b border-zinc-200">
+                <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+                    <span class="text-xs font-extrabold uppercase tracking-wider text-zinc-500">
+                        Geprüfte Fachkompetenz aus Köln-Mülheim
+                    </span>
+                    <div class="flex flex-wrap justify-center gap-3 text-xs font-bold text-zinc-800">
+                        <span class="bg-zinc-100 border border-zinc-200 px-3.5 py-2 rounded-xl">🏛️ Handwerkskammer zu Köln</span>
+                        <span class="bg-zinc-100 border border-zinc-200 px-3.5 py-2 rounded-xl">⚡ Elektroinstallation seit 1987</span>
+                        <span class="bg-zinc-100 border border-zinc-200 px-3.5 py-2 rounded-xl">📋 Anlagenplanung &amp; Gewerbeanmeldung</span>
+                        <span class="bg-zinc-100 border border-zinc-200 px-3.5 py-2 rounded-xl">🏠 Persönliche Vor-Ort-Beratung</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ANIMIERTE ERFOLGSZÄHLER -->
+            <section id="countersSection" class="py-14 px-4 bg-zinc-900 text-white border-b border-zinc-800">
+                <div class="max-w-5xl mx-auto">
+                    <div class="text-center max-w-2xl mx-auto mb-10">
+                        <span class="text-yellow-400 text-xs font-extrabold uppercase tracking-widest">Erfahrung &amp; Verlässlichkeit</span>
+                        <h2 class="text-2xl md:text-4xl font-extrabold mt-1">Zahlen, auf die Sie bauen können.</h2>
+                        <p class="text-zinc-400 text-sm mt-2">
+                            Seit 1987 widmet sich die Elektro W. Nengelken GmbH in Köln-Mülheim mit Hingabe und Sachverstand der gesamten Elektrotechnik.
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+                        <div class="bg-white/5 border border-white/10 rounded-2xl p-6 text-center">
+                            <div class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-yellow-400 counter-num" data-target="39" data-suffix="+">0+</div>
+                            <div class="text-xs sm:text-sm font-semibold text-zinc-200 mt-2">Jahre Erfahrung (seit 1987)</div>
+                        </div>
+                        <div class="bg-white/5 border border-white/10 rounded-2xl p-6 text-center">
+                            <div class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-red-500 counter-num" data-target="1500" data-suffix="+">0+</div>
+                            <div class="text-xs sm:text-sm font-semibold text-zinc-200 mt-2">Realisierte Projekte</div>
+                        </div>
+                        <div class="bg-white/5 border border-white/10 rounded-2xl p-6 text-center">
+                            <div class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-yellow-400 counter-num" data-target="100" data-suffix="%">0%</div>
+                            <div class="text-xs sm:text-sm font-semibold text-zinc-200 mt-2">Meister- &amp; Fachqualität</div>
+                        </div>
+                        <div class="bg-white/5 border border-white/10 rounded-2xl p-6 text-center">
+                            <div class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-red-500 counter-num" data-target="24" data-suffix="h">0h</div>
+                            <div class="text-xs sm:text-sm font-semibold text-zinc-200 mt-2">Schnelle Rückmeldung</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Unsere Leistungen im Überblick (exakt aus dem Leistungsportfolio der Bestandsseite) -->
+            <section class="py-16 px-4 bg-white border-b border-zinc-200">
+                <div class="max-w-6xl mx-auto">
+                    <div class="text-center max-w-2xl mx-auto mb-12">
+                        <span class="text-red-600 text-xs font-extrabold uppercase tracking-wider">Unsere Leistungen</span>
+                        <h2 class="text-3xl md:text-4xl font-extrabold text-zinc-900 mt-1">
+                            Elektrotechnik für Privat &amp; Gewerbe
+                        </h2>
+                        <p class="text-zinc-600 text-sm mt-2">
+                            Starkstrom, Schwachstrom, Drehstrom und Netzwerktechnik – von der Hauptverteilung bis zur modernen Smart-Home-Steuerung.
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <div class="bg-zinc-50 border border-zinc-200 rounded-2xl p-6 flex flex-col justify-between hover:border-red-600 transition">
+                            <div>
+                                <div class="w-11 h-11 rounded-xl bg-red-600 text-white flex items-center justify-center text-lg mb-4">⚡</div>
+                                <h3 class="font-extrabold text-zinc-900 text-base mb-2">Starkstrom &amp; Verteiler</h3>
+                                <ul class="text-xs text-zinc-600 space-y-1.5 mb-4">
+                                    <li>• Hausanschlüsse &amp; Zähleranlagen</li>
+                                    <li>• Sicherungskästen &amp; Unterverteilungen</li>
+                                    <li>• Gewerbeanmeldung &amp; E-Check</li>
+                                </ul>
+                            </div>
+                            <a href="#heroDirectForm" onclick="presetHeroAndScroll('Hauselektrik & Zähleranlage', 85)" class="text-xs font-extrabold text-red-600 hover:underline">
+                                Direkt oben anfragen ↑
+                            </a>
+                        </div>
+
+                        <div class="bg-zinc-50 border border-zinc-200 rounded-2xl p-6 flex flex-col justify-between hover:border-red-600 transition">
+                            <div>
+                                <div class="w-11 h-11 rounded-xl bg-zinc-900 text-yellow-400 flex items-center justify-center text-lg mb-4">💡</div>
+                                <h3 class="font-extrabold text-zinc-900 text-base mb-2">Hauselektrik &amp; Licht</h3>
+                                <ul class="text-xs text-zinc-600 space-y-1.5 mb-4">
+                                    <li>• Steckdosen, Schalter &amp; Beleuchtung</li>
+                                    <li>• Sicherungstechnik &amp; Gartenelektrik</li>
+                                    <li>• Elektrische Markisensteuerung</li>
+                                </ul>
+                            </div>
+                            <a href="#heroDirectForm" onclick="presetHeroAndScroll('Hauselektrik & Zähleranlage', 85)" class="text-xs font-extrabold text-red-600 hover:underline">
+                                Direkt oben anfragen ↑
+                            </a>
+                        </div>
+
+                        <div class="bg-zinc-50 border border-zinc-200 rounded-2xl p-6 flex flex-col justify-between hover:border-red-600 transition">
+                            <div>
+                                <div class="w-11 h-11 rounded-xl bg-red-600 text-white flex items-center justify-center text-lg mb-4">🌐</div>
+                                <h3 class="font-extrabold text-zinc-900 text-base mb-2">Datentechnik &amp; Smart Home</h3>
+                                <ul class="text-xs text-zinc-600 space-y-1.5 mb-4">
+                                    <li>• SMARTHOME-Technik &amp; Steuerung</li>
+                                    <li>• LAN-Technik, Router &amp; Netzwerke</li>
+                                    <li>• PC-Installation &amp; Gebäudevernetzung</li>
+                                </ul>
+                            </div>
+                            <a href="#heroDirectForm" onclick="presetHeroAndScroll('Smart Home & LAN-Technik', 110)" class="text-xs font-extrabold text-red-600 hover:underline">
+                                Direkt oben anfragen ↑
+                            </a>
+                        </div>
+
+                        <div class="bg-zinc-50 border border-zinc-200 rounded-2xl p-6 flex flex-col justify-between hover:border-red-600 transition">
+                            <div>
+                                <div class="w-11 h-11 rounded-xl bg-zinc-900 text-yellow-400 flex items-center justify-center text-lg mb-4">📐</div>
+                                <h3 class="font-extrabold text-zinc-900 text-base mb-2">Anlagen- &amp; Küchenplanung</h3>
+                                <ul class="text-xs text-zinc-600 space-y-1.5 mb-4">
+                                    <li>• Individuelle Elektro-Anlagenplanung</li>
+                                    <li>• Anschlüsse &amp; Leitungen für Einbauküchen</li>
+                                    <li>• Persönliche Beratung bei Ihnen vor Ort</li>
+                                </ul>
+                            </div>
+                            <a href="#heroDirectForm" onclick="presetHeroAndScroll('Küchen- & Anlagenplanung', 95)" class="text-xs font-extrabold text-red-600 hover:underline">
+                                Direkt oben anfragen ↑
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Familiäres Team & Kundenstimmen -->
+            <section class="py-16 px-4 bg-zinc-50 border-b border-zinc-200">
+                <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                    <div class="lg:col-span-6 space-y-5">
+                        <span class="text-red-600 text-xs font-extrabold uppercase tracking-wider">Familiärer Fachbetrieb · Seit 1987</span>
+                        <h2 class="text-3xl md:text-4xl font-extrabold text-zinc-900 leading-tight">
+                            Verständliche Beratung – direkt bei Ihnen vor Ort
+                        </h2>
+                        <p class="text-zinc-600 text-sm md:text-base leading-relaxed">
+                            Wir sind ein motiviertes, familiäres Team in Köln-Mülheim, das sich seit über drei Jahrzehnten auf sichere Elektroinstallationen und moderne Beleuchtungsanlagen spezialisiert hat. Wir erklären technische Lösungen verständlich – ohne Fachchinesisch – und setzen Ihr Projekt termintreu um.
+                        </p>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
+                            <div class="bg-white border border-zinc-200 rounded-2xl p-4">
+                                <div class="text-lg font-extrabold text-red-600">Seit 1987</div>
+                                <div class="text-xs text-zinc-600 mt-1">Verwurzelter Kölner Betrieb</div>
+                            </div>
+                            <div class="bg-white border border-zinc-200 rounded-2xl p-4">
+                                <div class="text-lg font-extrabold text-red-600">Vor Ort</div>
+                                <div class="text-xs text-zinc-600 mt-1">Persönliche Projektplanung</div>
+                            </div>
+                            <div class="bg-white border border-zinc-200 rounded-2xl p-4">
+                                <div class="text-lg font-extrabold text-red-600">Komplett</div>
+                                <div class="text-xs text-zinc-600 mt-1">Von Hausanschluss bis Smart Home</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Kundenstimmen-Karten -->
+                    <div class="lg:col-span-6 space-y-4">
+                        <div class="bg-white border border-zinc-200 rounded-2xl p-5 shadow-2xs">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="font-bold text-zinc-900 text-sm">Kundenbewertung · Köln-Mülheim</span>
+                                <span class="text-yellow-500 text-xs font-bold">★★★★★</span>
+                            </div>
+                            <p class="text-xs text-zinc-600 leading-relaxed">
+                                „Sehr kompetente Beratung vor Ort für unseren neuen Sicherungskasten und die Küchenanschlüsse. Saubere Arbeit, pünktlich und absolut faire Preise!“
+                            </p>
+                        </div>
+
+                        <div class="bg-white border border-zinc-200 rounded-2xl p-5 shadow-2xs">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="font-bold text-zinc-900 text-sm">Gewerbekunde · Köln-Deutz</span>
+                                <span class="text-yellow-500 text-xs font-bold">★★★★★</span>
+                            </div>
+                            <p class="text-xs text-zinc-600 leading-relaxed">
+                                „Elektro Nengelken hat unsere komplette Büro-Netzwerkverkabelung und Beleuchtung modernisiert. Ein verlässlicher Traditionsbetrieb, den man gerne weiterempfiehlt.“
+                            </p>
+                        </div>
+
+                        <div class="bg-white border border-zinc-200 rounded-2xl p-5 shadow-2xs">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="font-bold text-zinc-900 text-sm">Privatkunde · Köln-Dellbrück</span>
+                                <span class="text-yellow-500 text-xs font-bold">★★★★★</span>
+                            </div>
+                            <p class="text-xs text-zinc-600 leading-relaxed">
+                                „Endlich ein Elektriker, der sich Zeit nimmt und alles verständlich erklärt. Von der Markisensteuerung bis zur Außenbeleuchtung lief alles reibungslos.“
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Einsatzgebiet & Interaktives FAQ -->
+            <section class="py-16 px-4 bg-white border-b border-zinc-200">
+                <div class="max-w-5xl mx-auto">
+                    <div class="text-center mb-10">
+                        <span class="text-red-600 text-xs font-extrabold uppercase tracking-wider">Einsatzgebiet &amp; Häufige Fragen</span>
+                        <h2 class="text-2xl md:text-3xl font-extrabold text-zinc-900 mt-1">Für Sie im Einsatz in ganz Köln &amp; Umgebung</h2>
+                        <div class="flex flex-wrap justify-center gap-2 mt-4 text-xs font-bold">
+                            <span class="bg-red-50 text-red-800 border border-red-200 px-3 py-1 rounded-full">Köln-Mülheim</span>
+                            <span class="bg-zinc-100 text-zinc-700 px-3 py-1 rounded-full">Dellbrück</span>
+                            <span class="bg-zinc-100 text-zinc-700 px-3 py-1 rounded-full">Holweide</span>
+                            <span class="bg-zinc-100 text-zinc-700 px-3 py-1 rounded-full">Deutz</span>
+                            <span class="bg-zinc-100 text-zinc-700 px-3 py-1 rounded-full">Kalk</span>
+                            <span class="bg-zinc-100 text-zinc-700 px-3 py-1 rounded-full">Ehrenfeld</span>
+                            <span class="bg-zinc-100 text-zinc-700 px-3 py-1 rounded-full">Bergisch Gladbach</span>
+                            <span class="bg-zinc-100 text-zinc-700 px-3 py-1 rounded-full">Leverkusen</span>
+                        </div>
+                    </div>
+
+                    <!-- FAQ Akkordeon -->
+                    <div class="space-y-3 max-w-3xl mx-auto">
+                        <div class="border border-zinc-200 rounded-2xl overflow-hidden">
+                            <button type="button" onclick="toggleFaq(this)" class="w-full px-5 py-4 text-left font-bold text-sm text-zinc-900 flex justify-between items-center bg-zinc-50 hover:bg-zinc-100 transition cursor-pointer">
+                                <span>Kommen Sie für die Planung auch zu uns nach Hause oder in den Betrieb?</span>
+                                <span class="text-red-600 font-extrabold text-lg">+</span>
+                            </button>
+                            <div class="hidden px-5 py-4 text-xs text-zinc-600 leading-relaxed bg-white border-t border-zinc-100">
+                                Ja, sehr gerne. Wir schauen uns die Gegebenheiten vor Ort an, beraten Sie verständlich zu Ihren Möglichkeiten (z. B. bei Küchenumbauten, Zählerschränken oder Smart Home) und erstellen ein transparentes Angebot.
+                            </div>
+                        </div>
+
+                        <div class="border border-zinc-200 rounded-2xl overflow-hidden">
+                            <button type="button" onclick="toggleFaq(this)" class="w-full px-5 py-4 text-left font-bold text-sm text-zinc-900 flex justify-between items-center bg-zinc-50 hover:bg-zinc-100 transition cursor-pointer">
+                                <span>Übernehmen Sie auch kleinere Reparaturen oder Erweiterungen?</span>
+                                <span class="text-red-600 font-extrabold text-lg">+</span>
+                            </button>
+                            <div class="hidden px-5 py-4 text-xs text-zinc-600 leading-relaxed bg-white border-t border-zinc-100">
+                                Selbstverständlich. Ob zusätzliche Steckdosen, neue Lichtschalter, Gartenstrom, Markisensteuerung oder Netzwerkdosen – wir helfen Ihnen zuverlässig bei kleinen wie großen Aufgaben.
+                            </div>
+                        </div>
+
+                        <div class="border border-zinc-200 rounded-2xl overflow-hidden">
+                            <button type="button" onclick="toggleFaq(this)" class="w-full px-5 py-4 text-left font-bold text-sm text-zinc-900 flex justify-between items-center bg-zinc-50 hover:bg-zinc-100 transition cursor-pointer">
+                                <span>Wann ist Ihre Hotline in Köln-Mülheim erreichbar?</span>
+                                <span class="text-red-600 font-extrabold text-lg">+</span>
+                            </button>
+                            <div class="hidden px-5 py-4 text-xs text-zinc-600 leading-relaxed bg-white border-t border-zinc-100">
+                                Sie erreichen uns telefonisch unter 0221 / 61 40 25 montags bis freitags von 10:00 bis 18:00 Uhr sowie jederzeit per E-Mail an elektro.nengelken@gmx.de oder über unser Direktformular.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- DIREKTER KONTAKT-ABSCHLUSS UNTEN (Sofort sichtbar ohne Extra-Klick!) -->
+            <section class="py-16 px-4 bg-gradient-to-br from-zinc-950 via-zinc-900 to-red-950 text-white">
+                <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+                    <div class="md:col-span-6 space-y-4">
+                        <span class="text-yellow-400 text-xs font-extrabold uppercase tracking-wider">Stellen Sie uns auf die Probe</span>
+                        <h2 class="text-3xl font-extrabold leading-tight">
+                            Direkt Kontakt aufnehmen – wir beraten Sie gerne
+                        </h2>
+                        <p class="text-zinc-300 text-sm leading-relaxed">
+                            Rufen Sie unsere Hotline direkt an oder senden Sie uns kurz Ihre Kontaktdaten für einen Rückruf und Terminvereinbarung.
+                        </p>
+                        <div class="space-y-2 text-sm pt-2">
+                            <div>📍 <strong>Adresse:</strong> Regentenstr. 5A, 51063 Köln-Mülheim</div>
+                            <div>📞 <strong>Hotline:</strong> <a href="tel:+49221614025" class="text-yellow-400 font-extrabold hover:underline">+49 (0)221 / 61 40 25</a></div>
+                            <div>✉️ <strong>E-Mail:</strong> <a href="mailto:elektro.nengelken@gmx.de" class="text-yellow-400 font-extrabold hover:underline">elektro.nengelken@gmx.de</a></div>
+                            <div>🕒 <strong>Öffnungszeiten:</strong> Mo–Fr: 10:00 – 18:00 Uhr</div>
+                        </div>
+                    </div>
+
+                    <div class="md:col-span-6 bg-white text-zinc-900 rounded-2xl p-6 shadow-xl">
+                        <form id="bottomDirectForm" class="space-y-3">
+                            <div class="font-extrabold text-base text-zinc-900 mb-1">Rückruf oder Vor-Ort-Termin anfragen</div>
+                            <input type="text" required placeholder="Ihr Name / Unternehmen *" class="w-full bg-zinc-50 border border-zinc-300 rounded-xl px-3.5 py-2.5 text-sm focus:outline-none focus:border-red-600">
+                            <input type="text" required placeholder="Telefonnummer oder E-Mail *" class="w-full bg-zinc-50 border border-zinc-300 rounded-xl px-3.5 py-2.5 text-sm focus:outline-none focus:border-red-600">
+                            <textarea rows="2" placeholder="Worum geht es? (z.B. Zähleranlage, Smart Home, Küchenanschlüsse)" class="w-full bg-zinc-50 border border-zinc-300 rounded-xl px-3.5 py-2 text-sm focus:outline-none focus:border-red-600"></textarea>
+                            <button type="submit" class="w-full bg-red-600 hover:bg-red-700 text-white font-extrabold py-3 rounded-xl text-sm transition cursor-pointer">
+                                Jetzt absenden →
+                            </button>
+                        </form>
+                        <div id="bottomSuccess" class="hidden text-center py-4 text-emerald-700 font-bold text-sm">
+                            ✅ Vielen Dank! Ihr Team von Elektro Nengelken meldet sich kurzfristig bei Ihnen.
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ========================================================= -->
+        <!-- UNTERSEITE 2: LEISTUNGEN                                  -->
+        <!-- ========================================================= -->
+        <div id="view-leistungen" class="page-view hidden">
+            <section class="py-14 px-4 bg-zinc-900 text-white border-b border-zinc-800">
+                <div class="max-w-5xl mx-auto">
+                    <span class="text-yellow-400 text-xs font-extrabold uppercase tracking-widest">Unser Leistungsspektrum</span>
+                    <h1 class="text-3xl md:text-5xl font-extrabold mt-1 mb-4">Elektrotechnik aus Meisterhand</h1>
+                    <p class="text-zinc-300 text-base max-w-2xl leading-relaxed">
+                        Starkstrom, Schwachstrom, Drehstrom und Netzwerktechnik für private Haushalte und gewerbliche Objekte in Köln.
+                    </p>
+                </div>
+            </section>
+
+            <section class="py-14 px-4 bg-white">
+                <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-zinc-50 border border-zinc-200 p-7 rounded-2xl">
+                        <h3 class="text-xl font-extrabold text-zinc-900 mb-2">⚡ Starkstrom &amp; Energieverteilung</h3>
+                        <p class="text-sm text-zinc-600 leading-relaxed mb-4">Fachgerechte Installation von Hausanschlüssen, Zähleranlagen, Sicherungskästen sowie Niederspannungshaupt- und Unterverteilungen.</p>
+                        <button type="button" onclick="navigateTo('home')" class="text-xs font-extrabold text-red-600 hover:underline cursor-pointer">Direkt auf der Startseite anfragen →</button>
+                    </div>
+                    <div class="bg-zinc-50 border border-zinc-200 p-7 rounded-2xl">
+                        <h3 class="text-xl font-extrabold text-zinc-900 mb-2">💡 Hauselektrik &amp; Lichttechnik</h3>
+                        <p class="text-sm text-zinc-600 leading-relaxed mb-4">Steckdosen, Schalterprogramme, moderne LED-Beleuchtungsanlagen, Sicherungstechnik, Gartenelektrik und elektrische Markisensteuerungen.</p>
+                        <button type="button" onclick="navigateTo('home')" class="text-xs font-extrabold text-red-600 hover:underline cursor-pointer">Direkt auf der Startseite anfragen →</button>
+                    </div>
+                    <div class="bg-zinc-50 border border-zinc-200 p-7 rounded-2xl">
+                        <h3 class="text-xl font-extrabold text-zinc-900 mb-2">🌐 Datentechnik &amp; Smart Home</h3>
+                        <p class="text-sm text-zinc-600 leading-relaxed mb-4">Strukturierte LAN-Verkabelung, Router- und Netzwerkeinrichtung, PC-Vernetzung sowie intelligente SMARTHOME-Technik.</p>
+                        <button type="button" onclick="navigateTo('home')" class="text-xs font-extrabold text-red-600 hover:underline cursor-pointer">Direkt auf der Startseite anfragen →</button>
+                    </div>
+                    <div class="bg-zinc-50 border border-zinc-200 p-7 rounded-2xl">
+                        <h3 class="text-xl font-extrabold text-zinc-900 mb-2">📐 Anlagen- &amp; Küchenplanung</h3>
+                        <p class="text-sm text-zinc-600 leading-relaxed mb-4">Individuelle Elektro-Anlagenplanung inkl. passgenauer Anschlüsse für neue Einbauküchen sowie Unterstützung bei Gewerbeanmeldungen.</p>
+                        <button type="button" onclick="navigateTo('home')" class="text-xs font-extrabold text-red-600 hover:underline cursor-pointer">Direkt auf der Startseite anfragen →</button>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ========================================================= -->
+        <!-- UNTERSEITE 3: ÜBER UNS & TRADITION                        -->
+        <!-- ========================================================= -->
+        <div id="view-ueber-uns" class="page-view hidden">
+            <section class="py-14 px-4 bg-zinc-900 text-white border-b border-zinc-800">
+                <div class="max-w-5xl mx-auto">
+                    <span class="text-yellow-400 text-xs font-extrabold uppercase tracking-widest">Köln-Mülheim · Seit 1987</span>
+                    <h1 class="text-3xl md:text-5xl font-extrabold mt-1 mb-4">Über Elektro W. Nengelken GmbH</h1>
+                    <p class="text-zinc-300 text-base max-w-2xl leading-relaxed">
+                        Ein motiviertes, familiäres Team mit jahrzehntelanger Erfahrung in Elektroinstallation und Beleuchtungstechnik.
+                    </p>
+                </div>
+            </section>
+
+            <section class="py-14 px-4 bg-white">
+                <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div class="space-y-4">
+                        <h2 class="text-2xl font-extrabold text-zinc-900">Tradition &amp; Sachverstand seit 1987</h2>
+                        <p class="text-sm text-zinc-600 leading-relaxed">
+                            Seit 1987 widmet sich die <strong>Elektro W. Nengelken GmbH</strong> aus Köln-Mülheim mit Hingabe und Sachverstand der Elektrotechnik in allen Bereichen – vom klassischen Hausanschluss bis zur modernen Smart-Home- und Netzwerktechnik.
+                        </p>
+                        <p class="text-sm text-zinc-600 leading-relaxed">
+                            Wir legen größten Wert auf verständliche Beratung bei Ihnen vor Ort, saubere Ausführung und langfristige Sicherheit für private und gewerbliche Anlagen.
+                        </p>
+                    </div>
+                    <div class="bg-zinc-50 border border-zinc-200 rounded-2xl p-6 space-y-3">
+                        <div class="font-extrabold text-zinc-900">Unsere Service-Standards:</div>
+                        <ul class="space-y-2 text-xs font-semibold text-zinc-700">
+                            <li>✓ Persönliche Vor-Ort-Beratung in Köln &amp; Umgebung</li>
+                            <li>✓ Fachgerechte Ausführung nach aktuellen VDE-Normen</li>
+                            <li>✓ Unterstützung bei Anlagenplanung &amp; Gewerbeanmeldung</li>
+                            <li>✓ Termintreue Umsetzung durch unser familiäres Team</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ========================================================= -->
+        <!-- UNTERSEITE 4: KONTAKT & RECHTLICHES                       -->
+        <!-- ========================================================= -->
+        <div id="view-kontakt" class="page-view hidden">
+            <section class="py-14 px-4 bg-zinc-900 text-white border-b border-zinc-800">
+                <div class="max-w-5xl mx-auto">
+                    <span class="text-yellow-400 text-xs font-extrabold uppercase tracking-widest">Köln-Mülheim</span>
+                    <h1 class="text-3xl md:text-5xl font-extrabold mt-1 mb-4">Kontakt &amp; Anfahrt</h1>
+                    <p class="text-zinc-300 text-base max-w-2xl leading-relaxed">
+                        Rufen Sie unsere Hotline an oder schreiben Sie uns – wir vereinbaren gerne einen Beratungstermin vor Ort.
+                    </p>
+                </div>
+            </section>
+
+            <section class="py-14 px-4 bg-white">
+                <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="bg-zinc-50 border border-zinc-200 p-7 rounded-2xl space-y-4">
+                        <h2 class="text-xl font-extrabold text-zinc-900">Elektro W. Nengelken GmbH</h2>
+                        <ul class="space-y-2.5 text-sm text-zinc-700">
+                            <li>📍 <strong>Adresse:</strong> Regentenstr. 5A, 51063 Köln-Mülheim</li>
+                            <li>📞 <strong>Hotline:</strong> <a href="tel:+49221614025" class="text-red-600 font-extrabold hover:underline">+49 (0)221 / 61 40 25</a></li>
+                            <li>✉️ <strong>E-Mail:</strong> <a href="mailto:elektro.nengelken@gmx.de" class="text-red-600 font-extrabold hover:underline">elektro.nengelken@gmx.de</a></li>
+                            <li>🕒 <strong>Öffnungszeiten:</strong> Mo–Fr: 10:00 – 18:00 Uhr</li>
+                        </ul>
+                        <a href="tel:+49221614025" class="block w-full text-center bg-red-600 hover:bg-red-700 text-white font-bold py-3.5 rounded-xl text-sm transition">
+                            Jetzt anrufen: 0221 / 61 40 25
+                        </a>
+                    </div>
+
+                    <div class="bg-zinc-50 border border-zinc-200 p-7 rounded-2xl space-y-3">
+                        <span class="inline-block bg-yellow-100 text-yellow-900 text-[11px] font-bold px-2.5 py-1 rounded-md">
+                            Rechtliches-Vorschau
+                        </span>
+                        <h2 class="text-xl font-extrabold text-zinc-900">Impressum &amp; Datenschutz</h2>
+                        <p class="text-xs text-zinc-600 leading-relaxed">
+                            Bei Live-Schaltung werden hier Ihre vollständigen Pflichtangaben gemäß § 5 DDG hinterlegt:
+                        </p>
+                        <div class="bg-white border border-zinc-200 rounded-xl p-4 text-xs text-zinc-600 space-y-1">
+                            <div><strong>Elektro W. Nengelken GmbH</strong></div>
+                            <div>Regentenstr. 5A, 51063 Köln-Mülheim</div>
+                            <div>Telefon: +49 (0)221 / 61 40 25</div>
+                            <div>E-Mail: elektro.nengelken@gmx.de</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-12 px-4 bg-zinc-950 text-zinc-300 text-sm border-t border-zinc-800">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+            <div>
+                <div class="text-lg font-extrabold text-white">Elektro W. Nengelken GmbH</div>
+                <div class="text-xs text-zinc-400 mt-1">Regentenstr. 5A, 51063 Köln-Mülheim · Tel. 0221 / 61 40 25 · elektro.nengelken@gmx.de</div>
+            </div>
+            <div class="flex flex-wrap gap-4 text-xs font-semibold">
+                <button type="button" onclick="navigateTo('home')" class="hover:text-white transition cursor-pointer">Startseite</button>
+                <button type="button" onclick="navigateTo('leistungen')" class="hover:text-white transition cursor-pointer">Leistungen</button>
+                <button type="button" onclick="navigateTo('ueber-uns')" class="hover:text-white transition cursor-pointer">Über uns</button>
+                <button type="button" onclick="navigateTo('kontakt')" class="hover:text-white transition cursor-pointer">Kontakt &amp; Impressum</button>
+            </div>
+        </div>
+        <div class="max-w-6xl mx-auto mt-8 pt-6 border-t border-zinc-800 flex flex-col sm:flex-row justify-between items-center gap-2 text-xs text-zinc-500">
+            <span>Unverbindlicher Design-Entwurf erstellt von <strong>Local Growth Media</strong> · Köln</span>
+            <span>Demoseite – nicht öffentlich indexiert</span>
+        </div>
+    </footer>
+
+    <script>
+        /* --- 1. Multi-Page Navigation --- */
+        function navigateTo(pageId) {
+            document.querySelectorAll('.page-view').forEach(el => el.classList.add('hidden'));
+            const target = document.getElementById('view-' + pageId);
+            if (target) target.classList.remove('hidden');
+
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                if (btn.dataset.nav === pageId) {
+                    btn.classList.add('bg-red-600', 'text-white', 'shadow-2xs', 'font-bold');
+                    btn.classList.remove('text-zinc-700', 'font-medium');
+                } else {
+                    btn.classList.remove('bg-red-600', 'text-white', 'shadow-2xs', 'font-bold');
+                    btn.classList.add('text-zinc-700', 'font-medium');
+                }
+            });
+
+            document.querySelectorAll('.mob-nav-btn').forEach(btn => {
+                if (btn.dataset.navMob === pageId) {
+                    btn.classList.add('text-white', 'bg-red-600', 'shadow-2xs');
+                    btn.classList.remove('text-zinc-600');
+                } else {
+                    btn.classList.remove('text-white', 'bg-red-600', 'shadow-2xs');
+                    btn.classList.add('text-zinc-600');
+                }
+            });
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        /* --- 2. Direkt sichtbare Hero-Kontakt- & Live-Preis-Box --- */
+        let heroState = {
+            service: 'Hauselektrik & Zähleranlage',
+            rate: 85
+        };
+
+        function setHeroService(name, rate, btn) {
+            heroState.service = name;
+            heroState.rate = rate;
+
+            document.querySelectorAll('.hero-srv-btn').forEach(b => {
+                b.className = 'hero-srv-btn border border-zinc-200 bg-zinc-50 text-zinc-700 hover:border-red-400 rounded-xl py-2 px-2 text-center transition cursor-pointer';
+            });
+            btn.className = 'hero-srv-btn border-2 border-red-600 bg-red-50 text-red-950 rounded-xl py-2 px-2 text-center transition cursor-pointer';
+
+            updateHeroEstimate();
+        }
+
+        function presetHeroAndScroll(name, rate) {
+            heroState.service = name;
+            heroState.rate = rate;
+            updateHeroEstimate();
+        }
+
+        function updateHeroEstimate() {
+            const count = parseInt(document.getElementById('heroScopeSlider').value, 10);
+            const label = count === 1 ? '1 Anschluss / Punkt' : `${count} Anschlüsse / Punkte`;
+            document.getElementById('heroScopeVal').innerText = label;
+            const estimate = Math.max(95, Math.round((count * heroState.rate) / 5) * 5);
+            document.getElementById('heroLivePrice').innerText = 'ca. ' + estimate + ' €';
+            document.getElementById('heroCalcSummary').value = `${heroState.service} | ${label} | Richtwert: ca. ${estimate} €`;
+        }
+        updateHeroEstimate();
+
+        document.getElementById('heroDirectForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const btn = document.getElementById('heroSubmitBtn');
+            btn.innerText = 'Wird gesendet...';
+            btn.disabled = true;
+
+            try {
+                await fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                    body: JSON.stringify(Object.fromEntries(new FormData(this)))
+                });
+            } catch (err) {}
+
+            this.classList.add('hidden');
+            document.getElementById('heroSuccessBox').classList.remove('hidden');
+        });
+
+        document.getElementById('bottomDirectForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            this.classList.add('hidden');
+            document.getElementById('bottomSuccess').classList.remove('hidden');
+        });
+
+        /* --- 3. Flüssig animierte Counter --- */
+        let countersAnimated = false;
+
+        function animateCounters() {
+            if (countersAnimated) return;
+            countersAnimated = true;
+
+            document.querySelectorAll('.counter-num').forEach(el => {
+                const target = parseInt(el.dataset.target, 10);
+                const suffix = el.dataset.suffix || '';
+                const duration = 1600;
+                const startTime = performance.now();
+
+                function tick(now) {
+                    const elapsed = now - startTime;
+                    const progress = Math.min(elapsed / duration, 1);
+                    const eased = 1 - Math.pow(1 - progress, 3);
+                    const current = Math.round(eased * target);
+                    el.innerText = current + suffix;
+
+                    if (progress < 1) {
+                        requestAnimationFrame(tick);
+                    } else {
+                        el.innerText = target + suffix;
+                    }
+                }
+                requestAnimationFrame(tick);
+            });
+        }
+
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounters();
+                }
+            });
+        }, { threshold: 0.25 });
+
+        const counterSec = document.getElementById('countersSection');
+        if (counterSec) counterObserver.observe(counterSec);
+        setTimeout(animateCounters, 2500);
+
+        /* --- 4. FAQ Akkordeon --- */
+        function toggleFaq(btn) {
+            const content = btn.nextElementSibling;
+            const icon = btn.querySelector('span:last-child');
+            const isHidden = content.classList.contains('hidden');
+            content.classList.toggle('hidden');
+            icon.innerText = isHidden ? '−' : '+';
+        }
+    </script>
+</body>
+</html>
